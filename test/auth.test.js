@@ -34,18 +34,8 @@ describe('Authentication Tests', () => {
             
         })
 
-        // expectations
-        // expect(response.status).toEqual(200);
-        expect(response.body).toEqual({ message: 'User created successfully' });
-    
-        expect(response.body.user).toMatch({
-            email: "maito4me@example.com",
-            first_name: "Sulaimon",
-            last_name: "Rasheed",
-            password: "altschool123",
-            
-        })
-        
+        expect(response.status).toEqual(302);
+        expect(response.header.location).toBe("/login") 
     })
 
     // Test case
@@ -66,17 +56,9 @@ describe('Authentication Tests', () => {
             password: "altschool123"
         })
 
-        // expectations
-        // expect(response.status).toEqual(200);
-        expect(response.body).toEqual({
-            message: 'successful login',
-            token: expect.any(String),
-            user: expect.any(Object)
-        })
-
-        // expect(response.body.user.first_name).toEqual('Sulaimon');
-        expect(response.body.user.email).toEqual('maito4me@example.com');
-        expect(response.text).toContain("Welcome to the informative world of Technology");
+        expect(response.status).toEqual(302)
+        
+        expect(response.header.location).toBe("/dashboard")
     })
 
     it('should not successfully login a user, when user does not exist', async () => {
@@ -94,12 +76,9 @@ describe('Authentication Tests', () => {
             email: "adewale@example.com",
             password: "altschool123"
         })
-
-        // expectations
-        // expect(response.status).toEqual(404);
-        expect(response.body).toMatchObject({
-            message: 'User not found',
-        })
-        expect(response.text).toContain("USER NOT FOUND");
+        .expect(302)
+        
+        expect(response.header.location).toBe("/userNotFound")
+      
     })
 })

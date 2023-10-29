@@ -69,3 +69,127 @@
 {"level":"info","message":"[Give user access] => login process successful"}
 {"level":"info","message":"[Authenticate user] => login process started"}
 {"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[CreateUser] => Signup process started"}
+{"level":"info","message":"[CreateUser] => User with email maito4me@example.com created successfully"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[CreateUser] => Signup process started"}
+{"level":"info","message":"[CreateUser] => User with email maito4me@example.com created successfully"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[CreateUser] => Signup process started"}
+{"level":"info","message":"[CreateUser] => User with email maito4me@example.com created successfully"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[CreateUser] => Signup process started"}
+{"level":"info","message":"[CreateUser] => User with email maito4me@example.com created successfully"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"error","message":"Client must be connected before running operations"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[CreateUser] => Signup process started"}
+{"level":"info","message":"[CreateUser] => User with email maito4me@example.com created successfully"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[CreateUser] => Signup process started"}
+{"level":"info","message":"[CreateUser] => User with email maito4me@example.com created successfully"}
+{"level":"info","message":"[Authenticate user] => login process started"}
+{"level":"info","message":"[Give user access] => login process successful"}
+{"level":"info","message":"[Authenticate user] => login process started"}
