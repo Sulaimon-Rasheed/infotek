@@ -1,0 +1,105 @@
+const supertest = require('supertest');
+const app = require('../app');
+const { connect } = require('./database');
+const UserModel = require('../models/user');
+
+// Test suite
+describe('Authentication Tests', () => {
+    let connection
+    // before hook
+    beforeAll(async () => {
+        connection = await connect()
+    })
+
+    afterEach(async () => {
+        await connection.cleanup()
+    })
+    
+    // after hook
+    afterAll(async () => {
+        await connection.disconnect()
+    })
+
+
+    // Test case
+    it('should successfully register a user', async () => {
+        const response = await supertest(app)
+        .post('/users/signup')
+        .type('form')
+        .send({
+            email: "maito4me@example.com",
+            first_name: "Sulaimon",
+            last_name: "Rasheed",
+            password: "altschool123",
+            
+        })
+
+        // expectations
+        // expect(response.status).toEqual(200);
+        expect(response.body).toEqual({ message: 'User created successfully' });
+    
+        expect(response.body.user).toMatch({
+            email: "maito4me@example.com",
+            first_name: "Sulaimon",
+            last_name: "Rasheed",
+            password: "altschool123",
+            
+        })
+        
+    })
+
+    // Test case
+    it('should successfully login a user', async () => {
+        await UserModel.create({
+            email: "maito4me@example.com",
+            first_name: "Sulaimon",
+            last_name: "Rasheed",
+            password: "altschool123",
+            
+        });
+
+        const response = await supertest(app)
+        .post('/users/login')
+        .type('form')
+        .send({
+            email: "maito4me@example.com",
+            password: "altschool123"
+        })
+
+        // expectations
+        // expect(response.status).toEqual(200);
+        expect(response.body).toEqual({
+            message: 'successful login',
+            token: expect.any(String),
+            user: expect.any(Object)
+        })
+
+        // expect(response.body.user.first_name).toEqual('Sulaimon');
+        expect(response.body.user.email).toEqual('maito4me@example.com');
+        expect(response.text).toContain("Welcome to the informative world of Technology");
+    })
+
+    it('should not successfully login a user, when user does not exist', async () => {
+        await UserModel.create({
+            email: "maito4me@example.com",
+            first_name: "Sulaimon",
+            last_name: "Rasheed",
+            password: "altschool123",
+        });
+
+        const response = await supertest(app)
+        .post('/users/login')
+        .type('form')
+        .send({
+            email: "adewale@example.com",
+            password: "altschool123"
+        })
+
+        // expectations
+        // expect(response.status).toEqual(404);
+        expect(response.body).toMatchObject({
+            message: 'User not found',
+        })
+        expect(response.text).toContain("USER NOT FOUND");
+    })
+})

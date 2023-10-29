@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/style.css" />
+    <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="../public/apple-touch-icon.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="../public/favicon-32x32.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="../public/favicon-16x16.png"
+  />
+  <link rel="manifest" href="../public/site.webmanifest" />
+    <title><%=siteName%> | Published blogs by Title</title>
+  </head>
+  <body>
+    <div id="rootContainer">
+      
+        <header>
+          <div id="logoAndNav">
+            <a href="/"><img id="logo" src="../public/android-chrome-192x192.png" alt="liberator logo" /></a>
+            <%-include("partials/header.ejs")-%>
+          </div>
+          <span id="date"><%=date%></span>
+        </header>
+        <div id="hAndMContainer">
+        <main>
+          <div id="welcomeContainer">
+          <h1 id="dashWelcome">Welcome to the informative world of Technology</h1>
+          <p><b>Look:</b> Here's where we share ideas, stories and opinions from the Technology ecosystem.</p>
+        </div>
+          <form action="/published_blogs/filter" method="get" id="searchBlogForm">
+            <label for="filter"
+              ><b>Select</b> a blog by <span>author</span> or <span>title</span> or <span>tag</span> and <b>Search</b> with a name:
+            
+            <select name="filter" id="selectInput">
+              <option value="">--Select here--</option>
+              <option value="author" name="filter">author</option>
+              <option value="title" name="filter">title</option>
+              <option value="tag" name="filter">tag</option>
+            </select>:
+          </label>
+
+            <label for="content" id="search"
+              >
+              <input
+                type="text"
+                id="searchInput"
+                name="content"
+                placeholder="Enter the name of author or title or tag here"
+            />
+          </label>
+            <button type="submit" class="searchAndSort">Search</button>
+          </form>
+
+          <form action="/blogs/sort" method="GET" id="sortBlogForm">
+            <label for="sort"
+              ><b>Sort</b> the blogs:
+            
+            <select name="sort" id="selectInput">
+              <option value="">---Sort the blogs by:---</option>
+              <option value="read_count" name="sort">read_count</option>
+              <option value="timestamp" name="sort">timestamp</option>
+              <option value="reading_time" name="sort">reading_time</option>
+            </select>
+          </label>
+            <button type="submit" class="searchAndSort">Sort</button>
+          </form>
+
+          <ul>
+            <%blogsByTitleInfo.forEach(blog=>{%>
+            <li>
+              <div id="eachBlogContainer">
+              <p><%=blog.tag%></p>
+              <h2><%=blog.title%></h2>
+
+              <div id="blogBody"><%=blog.body%></div>
+                <form action="/blogs/readBlog" method="GET">
+                  <input
+                    type="hidden"
+                    value="<%=blog._id%>"
+                    name="blogId"
+                    style="
+                      width: 0;
+                      height: 0;
+                      background-color: inherit;
+                      border: none;
+                    "
+                  />
+                  <button id="fingerSpan">
+              
+                      <img src="../public/finger2_image.jpg" alt="pointing finger" id="finger">
+                      <figcaption id="readCaption">Read more</figcaption>
+                    
+                  </button>
+                </form>
+              <p id="blogDescribe"><b>Description:</b><%=blog.description%></p>
+             
+              <div id="blogNote">
+                <p><strong>Read count: </strong><%=blog.read_count%></p>
+                <p><strong>Reading time: </strong> <%=blog.reading_time%></p>
+              </div>
+              <p id="time">
+                <b>Published time:</b> <%=blog.published_timestamp%>
+              </p>
+              <div id="blogAuthor">
+                <img src="../public/person_image.jpg" alt="author's image" id="authorImage">
+                <p>
+                  <%=blog.author%>
+                </p>
+              
+              </div>
+
+            </div>
+            </li>
+            <%})%>
+          </ul>
+        </main>
+      </div>
+      <footer>
+        <p>
+          Send us a mail &rBarr;
+          <a href="mailto:maito4me@gmail.com"
+            ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
+          /></a>
+        </p>
+        <%-include("partials/footer.ejs")-%>
+      </footer>
+    </div>
+  </body>
+</html>

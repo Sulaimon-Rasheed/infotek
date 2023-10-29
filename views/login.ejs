@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../public/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../public/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../public/site.webmanifest" />
+    <link rel="stylesheet" href="../public/style.css" />
+    <title><%=siteBrand%> | Login</title>
+  </head>
+  <body>
+    <div id="rootContainer">
+      <header>
+        <div id="logoAndNav">
+          <a href="/"
+            ><img
+              id="logo"
+              src="../public/android-chrome-192x192.png"
+              alt="liberator logo"
+          /></a>
+          <%-include("partials/header.ejs")-%>
+        </div>
+      </header>
+
+      <div id="hAndMContainer">
+        <main>
+          <h1 class="topic"><span>Login</span></h1>
+          <form action="users/login" , method="post">
+            <div id="authContainer">
+              <label for="email" class="label"
+                >email:
+                <input type="text" , name="email" class="input" /> </label
+              ><br /><br /><br />
+              <label for="password" class="label"
+                >password:
+                <input type="password" , name="password" class="input" />
+              </label>
+            </div>
+
+            <button type="submit" class="submit">Enter</button>
+          </form>
+        </main>
+      </div>
+      <footer>
+        <p>
+          Send us a mail &rBarr;
+          <a href="mailto:maito4me@gmail.com"
+            ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
+          /></a>
+        </p>
+        <%-include("partials/footer.ejs")-%>
+      </footer>
+    </div>
+  </body>
+</html>

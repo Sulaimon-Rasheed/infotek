@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../public/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../public/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../public/site.webmanifest" />
+    <link rel="stylesheet" href="../public/style.css" />
+    <title><%=siteBrand%> | Create blog</title>
+  </head>
+  <body>
+    <div id="rootContainer">
+      <header id="dashHeader">
+        <div id="logoAndNav">
+          <a href="/"
+            ><img
+              id="logo"
+              src="../public/android-chrome-192x192.png"
+              alt="fix logo"
+          /></a>
+          <%-include("partials/header.ejs")-%>
+        </div>
+        <span id="date"><%=date%></span>
+      </header>
+      <div id="hAndMContainer">
+        <%if(user){%>
+    <div id="welcomeContainer">
+        <h1 id="dashWelcome">Welcome <span><%= user.email%></span> to the blog creation point.</h1>
+        <p><b>Trust:</b>Your article will be informative and impactful.</p>
+    </div>
+        <form action="/blogs/create" method="POST">
+            <label for="tag" class="createLabel">Tag: <input type="text" name="tag" id="searchInput" /></label
+                ><br /><br />
+          <label for="title" class="createLabel">Title: <input type="text" name="title" id="searchInput"/></label
+          ><br /><br />
+          <label for="description" class="createLabel"
+            >Description: <input type="text" name="description" id="searchInput"/></label
+          ><br /><br />
+          <label for="author" class="createLabel">Author: <input type="text" name="author" id="searchInput"/></label
+          ><br /><br />
+          <label for="body" class="createLabel">Body: </label><br />
+          <textarea name="body" id="blogBodyArea" cols="100" rows="10"></textarea
+          ><br /><br />
+          <button type="submit" id="anchor">Submit</button>
+        </form>
+        <%}else{%>
+        <p>Please<a href="/login" id="anchor">login</a></p>
+        <%}%>
+      </div>
+      <footer>
+        <p>
+          Send us a mail &rBarr;
+          <a href="mailto:maito4me@gmail.com"
+            ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
+          /></a>
+        </p>
+        <%-include("partials/footer.ejs")-%>
+      </footer>
+    </div>
+  </body>
+</html>

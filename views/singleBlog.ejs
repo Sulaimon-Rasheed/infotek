@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../public/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../public/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../public/site.webmanifest" />
+    <link rel="stylesheet" href="../public/style.css" />
+    <title><%=siteBrand%> | Full blog</title>
+  </head>
+  <body>
+    <div id="rootContainer">
+      <header>
+        <div id="logoAndNav">
+          
+          <form action="/blogs/readCount/<%=blog._id%>" method="PUT">
+            <input
+              type="number"
+              value="<%= blog.read_count + 1 %>"
+              name="readCount"
+              style="
+                width: 0;
+                height: 0;
+                border: none;
+                background-color: inherit;
+              "
+            />
+            <button
+              type="submit"
+              id="anchor"
+              id="blogBody"
+              formmethod="post"
+              title="click to read more"
+            >
+              Back to All blogs
+            </button>
+          </form>
+        </div>
+      </header>
+      <div id="hAndMContainer">
+        <main>
+          <h1><span><%=blog.title%></span></h1>
+          <div id="eachBlogContainer">
+            <textarea id="singleBlogBody" cols="100" rows="15"><%=blog.body%></textarea>
+          <p class="singleBlogTime"><b>Published time:  </b><%=blog.published_timestamp%></p>
+          <div id="blogAuthor">
+            <img
+              src="../public/person_image.jpg"
+              alt="author's image"
+              id="authorImage"
+            />
+            <p><span><%=blog.author%></span></p>
+          </div>
+        </div>
+          <form action="/blogs/readCount/<%=blog._id%>" method="PUT">
+            <input
+              type="number"
+              value="<%= blog.read_count + 1 %>"
+              name="readCount"
+              style="
+                width: 0;
+                height: 0;
+                border: none;
+                background-color: inherit;
+              "
+            />
+            <button
+              type="submit"
+              id="anchor"
+              id="blogBody"
+              formmethod="post"
+              title="click to read more"
+            >
+            Back to All blogs
+            </button>
+          </form>
+        </main>
+      </div>
+      <footer>
+        <p>
+          Send us a mail &rBarr;
+          <a href="mailto:maito4me@gmail.com"
+            ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
+          /></a>
+        </p>
+        <%-include("partials/footer.ejs")-%>
+      </footer>
+    </div>
+  </body>
+</html>

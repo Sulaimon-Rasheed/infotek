@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../public/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../public/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../public/site.webmanifest" />
+    <link rel="stylesheet" href="../public/style.css" />
+    <title><%=siteBrand%> | Dashboard</title>
+  </head>
+  <body>
+    <div id="rootContainer">
+      <header id="dashHeader">
+        <div id="logoAndNav">
+          <a href="/"
+            ><img
+              id="logo"
+              src="../public/android-chrome-192x192.png"
+              alt="fix logo"
+          /></a>
+          <%-include("partials/header.ejs")-%>
+        </div>
+        <span id="date"><%=date%></span>
+      </header>
+      <div id="hAndMContainer">
+        <%if(user){%>
+        <h1 id="dashWelcome">Welcome <span><%= user.email%></span> to your blogs management dashboard</h1>
+        <p>Here, you can <span><a href="/create_blog">create</a></span>, <span>update</span> and <span>delete</span> blogs either in draft or published state.</p>
+        <p>After creating a blog, you can click on the <span>read more</span> finger pointer to make update or delete the blog.</p>
+        
+        <div>
+          <main>
+            <form action="/dashboard/filter" method="get" id="searchBlogForm2">
+              <label for="filter"
+                >Filter your blogs by state:
+                <select name="filter" id="selectInput">
+                  <option value="">
+                    --Select by what state to filter blogs--
+                  </option>
+                  <option value="draft" name="filter">draft</option>
+                  <option value="published" name="filter">published</option>
+                  <option value="All" name="filter">All</option>
+                </select>
+              </label>
+              <button type="submit" class="searchAndSort">filter</button>
+            </form>
+            <ul>
+              <%paginatedBlogs.forEach(blog=>{%>
+              <li>
+                <div id="eachBlogContainer">
+                  <p><%=blog.tag%></p>
+                  <h2><%=blog.title%></h2>
+                  <div id="blogBody"><%=blog.body%></div>
+                  <form action="/blogs/ownersBlog" method="GET">
+                    <input
+                      type="hidden"
+                      value="<%=blog._id%>"
+                      name="blogId"
+                      style="
+                        width: 0;
+                        height: 0;
+                        background-color: inherit;
+                        border: none;
+                      "
+                    />
+                    <button id="fingerSpan">
+                
+                        <img src="../public/finger2_image.jpg" alt="pointing finger" id="finger">
+                        <figcaption id="readCaption">Read more</figcaption>
+                      
+                    </button>
+                  </form>
+                  <p id="blogDescribe">
+                    <b>Description:</b><%=blog.description%>
+                  </p>
+                  <div id="blogNote">
+                    <p><strong>Read count: </strong><%=blog.read_count%></p>
+                    <p>
+                      <strong>Reading time: </strong> <%=blog.reading_time%>
+                    </p>
+                  </div>
+                  <p id="time">
+                    <b>Drafted time:</b> <%=blog.drafted_timestamp%>
+                  </p>
+                  <div id="blogAuthor">
+                    <img
+                      src="../public/person_image.jpg"
+                      alt="author's image"
+                      id="authorImage"
+                    />
+                    <p><%=blog.author%></p>
+                  </div>
+
+                  <div id="action">
+                    <%if(blog.state === "draft"){%>
+                    <p
+                      style="background-color: brown; color: white"
+                      class="blogState"
+                    >
+                      <%=blog.state%>
+                    </p>
+                    <%}else{%>
+                    <p
+                      style="background-color: green; color: white"
+                      class="blogState"
+                    >
+                      <%=blog.state%>
+                    </p>
+                    <%}%>
+
+                    
+                  </div>
+                </div>
+                <div id="updateAndDelete">
+                  <form
+                    action="/blogs/updateState/<%=blog._id%>"
+                    method="PUT"
+                  >
+                    <input
+                      id="stateInput"
+                      type="text"
+                      name="state"
+                      value="published"
+                    />
+
+                    <input
+                      type="date"
+                      value="0"
+                      name="published_timestamp"
+                      style="
+                        width: 0;
+                        height: 0;
+                        background-color: inherit;
+                        border: none;
+                      "
+                    />
+                    <%if(blog.state==="draft"){%>
+                    <button
+                      id="state"
+                      type="submit"
+                      formmethod="post"
+                      title="click to publish the blog"
+                    >
+                      publish
+                    </button>
+                    <%}else{%>
+                    <span></span>
+                    <%}%>
+                  </form>
+                </div>
+              </li>
+              <%})%>
+            </ul>
+          </main>
+        </div>
+
+        <%}else{%>
+        <p>Please<a href="/login">login</a></p>
+
+        <%}%>
+      </div>
+
+      <ul class="page">
+        <%if(skip == 0){%> <%for(let i = 1; i<= maxPage - 1; i++){%>
+        <li>
+          <a href="http://localhost:6500/dashboard?page=<%=allPages[i]%>"
+            ><span style="color: white;">Next &rArr;</span>page <%=allPages[i] + 1%></a
+          >
+        </li>
+        <%}%> <%}%>
+      </ul>
+
+      <ul class="page">
+        <%if(skip != 0){%>
+        <li>
+          <a href="http://localhost:6500/dashboard?page=0"><span style="color: white;">&lArr;</span> previous page</a>
+        </li>
+        <%for(let i = 1; i<= maxPage - 1; i++){%>
+          <span style="font-weight: bold;">Next &rArr;</span>
+        <li>
+          <a href="http://localhost:6500/dashboard?page=<%=allPages[i]%>"
+            >page <%=allPages[i] + 1%></a
+          >
+        </li>
+        <%}%> <%}%>
+      </ul>
+      <footer>
+        <p>
+          Send us a mail &rBarr;
+          <a href="mailto:maito4me@gmail.com"
+            ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
+          /></a>
+        </p>
+        <%-include("partials/footer.ejs")-%>
+      </footer>
+    </div>
+  </body>
+</html>

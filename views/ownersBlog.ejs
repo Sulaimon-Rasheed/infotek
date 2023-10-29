@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../public/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../public/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../public/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../public/site.webmanifest" />
+    <link rel="stylesheet" href="../public/style.css" />
+    <title><%=siteBrand%> | Blog management board</title>
+  </head>
+  <body>
+    <div id="rootContainer">
+      <header>
+        <div id="logoAndNav">
+          <a href="/"
+            ><img
+              id="logo"
+              src="../public/android-chrome-192x192.png"
+              alt="liberator logo"
+          /></a>
+          <%-include("partials/header.ejs")-%>
+        </div>
+      </header>
+      <div id="hAndMContainer">
+        <main>
+          <h1><span><%=blog.title%></span></h1>
+          <div id="eachBlogContainer">
+            <textarea id="ownersBlogBody" cols="100" rows="15"><%=blog.body%></textarea>
+          
+          <div id="blogAuthor">
+            <img
+              src="../public/person_image.jpg"
+              alt="author's image"
+              id="authorImage"
+            />
+            <p><span><%=blog.author%></span></p>
+          </div>
+          </div>
+          <form action="/blogs/updateBody/<%=blog._id%>" method="PUT" id="updateForm">
+            <label for="body"
+              ><h2>Make update to your blog body(Draft or Published) here:</h2>
+              <textarea name="body" id="blogBodyArea" cols="100" rows="15"></textarea>
+            </label>
+            <input
+              type="number"
+              value="0"
+              name="reading_time"
+              style="
+                width: 0;
+                height: 0;
+                background-color: inherit;
+                border: none;
+              "
+            />
+            <button
+              formmethod="POST"
+              type="submit"
+              id="updateButton"
+              title="Your blog will be updated"
+            >
+              Send
+            </button>
+          </form>
+
+          <form action="/blogs/deleOneBlog/<%=blog._id%>" method="DELETE" id="deleteBlogForm">
+            <button
+              id="delButon"
+              type="submit"
+              formmethod="post"
+              title="delete blog"
+            >
+              <img src="../public/delete_icon.svg" alt="delete" id="delIcon" />
+              <figcaption>Delete</figcaption>
+            </button>
+          </form>
+        </main>
+      </div>
+      <footer>
+        <p>
+          Send us a mail &rBarr;
+          <a href="mailto:maito4me@gmail.com"
+            ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
+          /></a>
+        </p>
+        <%-include("partials/footer.ejs")-%>
+      </footer>
+    </div>
+  </body>
+</html>
