@@ -40,9 +40,12 @@ app.get("/login", (req, res) => {
   res.status(200).render("login", { navs: ["Signup", "Logout"] });
 });
 
+
+
+// Getting of blogs by logged in and not logged in users (paginated).
 app.get("/published_blogs", async (req, res) => {
   const page = req.query.page || 0;
-  const blogPerPage = 3;
+  const blogPerPage = 20;
 
   const allPublishedBlogsInfo = await blogModel
     .find({ state: "published" })
@@ -69,9 +72,11 @@ app.get("/published_blogs", async (req, res) => {
   });
 });
 
+
+// Getting to the dashboard of logged in users to view created blogs(published and draft)
 app.get("/dashboard", auth.ensureLogin, async (req, res) => {
   const page = req.query.page || 0;
-  const blogPerPage = 3;
+  const blogPerPage = 20;
 
   const allDarshboardBlogs = await blogModel
     .find({ user_id: res.locals.user._id })
@@ -99,12 +104,14 @@ app.get("/dashboard", auth.ensureLogin, async (req, res) => {
   });
 });
 
+
+// Filtering of the blogs of logged in user by state (paginated)
 app.get("/dashboard/filter", auth.ensureLogin, async (req, res) => {
   const selector = req.query;
 
   if (selector.filter === "draft") {
     const page = req.query.page || 0;
-    const blogPerPage = 3;
+    const blogPerPage = 20;
 
     const allDarshboardDraftBlogs = await blogModel
       .find({ user_id: res.locals.user._id, state: "draft" })
@@ -132,7 +139,7 @@ app.get("/dashboard/filter", auth.ensureLogin, async (req, res) => {
     });
   } else if (selector.filter === "published") {
     const page = req.query.page || 0;
-    const blogPerPage = 3;
+    const blogPerPage = 20;
 
     const darshboardPublishedBlogs = await blogModel
       .find({ state: "published", user_id: res.locals.user._id })
@@ -161,7 +168,7 @@ app.get("/dashboard/filter", auth.ensureLogin, async (req, res) => {
 
   } else if (selector.filter === "All") {
     const page = req.query.page || 0;
-    const blogPerPage = 3;
+    const blogPerPage = 20;
 
     const darshboardBlogs = await blogModel
       .find({user_id: res.locals.user._id })
@@ -193,6 +200,9 @@ app.get("/dashboard/filter", auth.ensureLogin, async (req, res) => {
   }
 });
 
+
+
+// Filtering all published blogs by author, tag and title (paginated)
 app.get("/published_blogs/filter", async (req, res) => {
   const selector = req.query;
 
@@ -200,7 +210,7 @@ app.get("/published_blogs/filter", async (req, res) => {
     try {
       let contentUpperCase = selector.content.toUpperCase();
       const page = req.query.page || 0;
-      const blogPerPage = 3;
+      const blogPerPage = 20;
 
       const allPublishedBlogsInfo = await blogModel
         .find({ author: contentUpperCase, state: "published" })
@@ -291,6 +301,8 @@ app.get("/published_blogs/filter", async (req, res) => {
   }
 });
 
+
+// Getting to the blog creation page
 app.get("/create_blog", auth.ensureLogin, (req, res) => {
   res.status(200).render("createBlog", {
     navs: ["Dashboard","Logout"],
@@ -298,6 +310,8 @@ app.get("/create_blog", auth.ensureLogin, (req, res) => {
   });
 });
 
+
+// Getting to the blog update page
 app.get("/updateBody", auth.ensureLogin, async (req, res) => {
   const page = req.query.page || 0;
   const blogPerPage = 3;
@@ -313,6 +327,8 @@ app.get("/updateBody", auth.ensureLogin, async (req, res) => {
   });
 });
 
+
+// Getting to the error pages
 app.get("/existingUser", (req, res) => {
   res.status(409).render("existingUser", {
     navs: ["Signup", "Login"],
@@ -343,17 +359,21 @@ app.get("/serverError", (req, res) => {
   });
 });
 
+
+// logging out
 app.get("/logout", (req, res) => {
   res.clearCookie("jwt");
   res.redirect("/");
 });
 
 
-
+// Handling non-existing route
 app.get("*", (req, res) => {
   res.status(404).render("pageNotFound", { navs: ["Home"] });
 });
 
+
+// Global error handling
 app.use((err, req, res, next) => {
   res.render("serverError", {
     navs: ["Home", "Published_blogs", "Dashboard"],

@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken")
 require("dotenv").config()
 const logger = require('../logger');
 
+
+// Users creation service function
 const createUser = async ({email, first_name, last_name, password})=>{
   logger.info('[CreateUser] => Signup process started')
     const userInfo = {email, first_name, last_name, password}
@@ -29,6 +31,7 @@ const createUser = async ({email, first_name, last_name, password})=>{
 }
 
 
+//Logging in service function
 const login = async ({email, password})=>{
   try{
     logger.info('[Authenticate user] => login process started')

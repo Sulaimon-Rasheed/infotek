@@ -7,6 +7,8 @@ const userRouter = express.Router()
 
 userRouter.use(cookieParser())
 
+
+// Creation of users
 userRouter.post("/signup", middleware.validateUser, async (req,res)=>{
     const response = await controller.createUser({
         email:req.body.email,
@@ -21,6 +23,8 @@ userRouter.post("/signup", middleware.validateUser, async (req,res)=>{
     }
 })
 
+
+//Logging in users
 userRouter.post("/login", middleware.validateLogInfo, async(req,res)=>{
     const response = await controller.login({email:req.body.email, password:req.body.password})
     if(response.code === 200){

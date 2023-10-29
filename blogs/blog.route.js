@@ -8,6 +8,8 @@ const blogRouter = express.Router()
 
 blogRouter.use(cookieParser())
 
+
+// Blog creation 
 blogRouter.post("/create",auth.ensureLogin, middleware.validateBlogInfo, async (req,res)=>{
     let body = req.body.body
    let bodyWordsArray = body.split(" ")

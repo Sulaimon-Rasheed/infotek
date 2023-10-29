@@ -1,6 +1,8 @@
 const blogModel = require("../models/blog");
 const logger = require('../logger');
 
+
+// Service function for Blog creation
 const createBlog = async (
     {
          title, 
@@ -46,6 +48,7 @@ logger.info('[CreateBlog] => Starting blog creation')
   };
 };
 
+//Updating the state of blogs
 const updateState = (req, res) => {
   const id = req.params.id
   const update = req.body
@@ -59,6 +62,8 @@ const updateState = (req, res) => {
       })
 };
 
+
+//Updating the body of blogs
 const updateBody = (req, res) => {
   const id = req.params.id
   const update = req.body
@@ -78,6 +83,8 @@ const updateBody = (req, res) => {
       })
 };
 
+
+// Deleting of blogs
 const deleteBlog = (req, res) => {
   const id = req.params.id
   blogModel.findByIdAndRemove(id)
@@ -89,6 +96,8 @@ const deleteBlog = (req, res) => {
       })
 }
 
+
+// Read counting of blogs
 const readCount = async (req,res)=>{
 const id = req.params.id
 const update = req.body.readCount
@@ -96,10 +105,12 @@ await blogModel.findByIdAndUpdate(id, {read_count:update})
 res.redirect("/published_blogs")
 }
 
+
+// Sorting of blogs by read_count or reading_time or timestamp
 const sort = async (req,res)=>{
   if(req.query.sort === "read_count"){
     const page = req.query.page || 0
-    const blogPerPage = 3
+    const blogPerPage = 20
 
     const allPublishedBlogsInfo = await blogModel
     .find({state:"published"})
@@ -118,7 +129,7 @@ const sort = async (req,res)=>{
     })
     }else if(req.query.sort === "timestamp"){
       const page = req.query.page || 0
-    const blogPerPage = 3
+    const blogPerPage = 20
 
     const allPublishedBlogsInfo = await blogModel
     .find({state:"published"})
@@ -137,7 +148,7 @@ const sort = async (req,res)=>{
       })
     }else if(req.query.sort === "reading_time"){
       const page = req.query.page || 0
-      const blogPerPage = 3
+      const blogPerPage = 20
   
       const allPublishedBlogsInfo = await blogModel
       .find({state:"published"})
@@ -159,6 +170,9 @@ const sort = async (req,res)=>{
     }
   }
 
+
+
+  // Geting the full text of dashboard blogs of logged in users only
   const readOwnersBlog = async (req,res)=>{
     const id = req.query.blogId
     const blog = await blogModel.findOne({_id:id})
@@ -168,6 +182,8 @@ const sort = async (req,res)=>{
     })
   }
 
+
+  //Getting the full text of published blogs visible to both logged in and not loggged in users
   const readBlog = async (req,res)=>{
     const id = req.query.blogId
     const blog = await blogModel.findOne({_id:id})
