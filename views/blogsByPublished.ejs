@@ -45,10 +45,11 @@
         <p>You can also <span><a href="/create_blog">create</a></span>, <span>update</span> and <span>delete</span> your blogs from here.</p>
         <div>
           <main>
+            <hr>
             <form action="/dashboard/filter" method="get" id="searchBlogForm2">
               <label for="filter"
-                >Filter blogs by state:
-                <select name="filter" id="selectInput">
+                >Filter blogs by state: </label>
+                <select name="filter" id="selectInput2">
                   <option value="">
                     ----Select state here----
                   </option>
@@ -56,10 +57,11 @@
                   <option value="published" name="filter">published</option>
                   <option value="All" name="filter">All</option>
                 </select>
-              </label>
+             
               <button type="submit" class="searchAndSort">filter</button>
             </form>
-            <ul>
+            <hr>
+            <ul id="blogList">
               <%paginatedBlogs.forEach(blog=>{%>
               <li>
                 <div id="eachBlogContainer">

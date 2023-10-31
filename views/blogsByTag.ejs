@@ -40,6 +40,7 @@
           <h1 id="dashWelcome">Welcome to the informative world of Technology</h1>
           <p><b>Look:</b> Here's where we share ideas, stories and opinions from the Technology ecosystem.</p>
         </div>
+        <hr>
           <form action="/published_blogs/filter" method="get" id="searchBlogForm">
             <label for="filter"
               ><b>Select</b> a blog by <span>author</span> or <span>title</span> or <span>tag</span> and <b>Search</b> with a name:
@@ -63,7 +64,8 @@
           </label>
             <button type="submit" class="searchAndSort">Search</button>
           </form>
-
+          <hr>
+          <hr id="midline">
           <form action="/blogs/sort" method="GET" id="sortBlogForm">
             <label for="sort"
               ><b>Sort</b> the blogs:
@@ -77,8 +79,8 @@
           </label>
             <button type="submit" class="searchAndSort">Sort</button>
           </form>
-
-          <ul>
+          <hr>
+          <ul id="blogList">
             <%blogsByTagInfo.forEach(blog=>{%>
             <li>
               <div id="eachBlogContainer">

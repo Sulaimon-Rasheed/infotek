@@ -7,7 +7,7 @@ html{
 }
 
 body{
-margin:0 2px
+margin:0
 }
 
 #blogBody{
@@ -24,6 +24,7 @@ margin:0 2px
 }
 
 #singleBlogBody, #ownersBlogBody{
+max-width: 80%;
  font-size: 20px;
 box-sizing: content-box;
 border: none;
@@ -65,7 +66,7 @@ font-weight: bold;
 #fingerSpan{
 position:absolute;
 top:145px;
-left: 120px;
+left: 123px;
 z-index:1;
 background-color:inherit;
 border: none;
@@ -79,12 +80,11 @@ cursor: pointer;
 
 
 #searchInput{
-width:400px;
  padding: 5px;
  text-align: center;
  border-radius: 5px;
  border: 2px solid black;
- 
+ margin-top: 20px;
 }
 
 #dashWelcome{
@@ -101,7 +101,7 @@ width:400px;
     font-weight: bold;
 }
 
-#selectInput{
+#selectInput, #selectInput2{
     padding: 5px;
     width:200px; 
     text-align: center; 
@@ -110,13 +110,24 @@ width:400px;
 
 }
 
-#sortBlogForm, #searchBlogForm{
-    margin-top: 20px;
-    text-align: start;
+#selectInput2{
+    margin-top: 10px;
 }
 
+#sortBlogForm, #searchBlogForm{
+    text-align: start;
+}
+hr{
+ border: 1px solid lightslategray;
+ background-color: lightslategray;
+}
+
+#midline{
+    margin-top: 30px;
+}
+
+
 #searchBlogForm2{
-    margin-top: 50px;
     text-align: start;
 }
 #welcomeContainer{
@@ -126,7 +137,7 @@ width:400px;
 #eachBlogContainer{
     position:relative;
     border: 5px solid green;
-    margin-bottom: 20px;
+    margin:0 auto 20px;
     padding:16px;
     box-shadow: 2px 2px 2px 2px brown;
 }
@@ -177,6 +188,7 @@ margin-top: 20px;
 }
 
 #blogBodyArea{
+    max-width: 100%;
     padding:10px 24px;
     font-size: 18px;
     margin: 10px auto 20px;
@@ -223,18 +235,19 @@ margin-top: 20px;
     margin: 0;
     text-align: center;
     position: relative;
+    /* width: 100vw; */
 }
 
 #logo{
     margin-left: 10px;
     width:50px;
     height: 50px;
-    flex:0.5
+    flex:0.5;
 }
 
 nav{
     margin-top: 0;
-    flex:9.5
+    flex:9.5;
 }
 
 
@@ -244,21 +257,23 @@ background-color: black;
 padding: 20px 0;
 }
 
-#navItems{
-    display: flex;
-    justify-content:end;
-    background-color:inherit;
-}
-
 main{
     margin-bottom: 200px;
 }
 
 ul{
-    margin: 16px 20px;
+    max-width: 100%;
+    display: flex;
+    margin:16px auto;
+    padding: 0 50px 0 0;
     list-style-type: none;
-    gap: 20px;
-    
+    gap: 10px; 
+    justify-content:end;
+    background-color:inherit; 
+}
+
+#blogList{
+    display: block;
 }
 h1{
     padding-top: 20px;
@@ -380,7 +395,7 @@ th{
 }
 .input{
     padding: 5px;
-    width:250px;
+    max-width:100%;
     border-radius:20px;
     border:2px solid burlywood;
     font-size: 16px;
@@ -468,7 +483,7 @@ footer{
 }
 
 #hAndMContainer{
-padding:0 24px 0 24px ;
+padding:0 16px 0 16px ;
 }
 
 #taskTable{
@@ -482,9 +497,109 @@ padding:0 24px 0 24px ;
     vertical-align:middle;
 }
 
-@media (min-height: 896px) {
+@media (min-height: 850px) {
     main{
-        margin-bottom:850px ;
+        margin-bottom:500px ;
     }
 }
+
+@media (max-width: 500px) {
+
+nav{
+    width: 80%;
+   }
+
+nav li a {
+    font-size: 12px;
+}
+
+ul{
+    gap:0px;
+    padding: 0;
+   
+}
+
+#navItems li{
+    width:100px;
+}
+
+h1{
+    font-size: 24px;
+}
+
+#copyright, footer{
+    display:block
+}
+
+}  
+
+@media (max-width: 300px) {
+    nav ul a{
+     font-size: 12px;
+    }
+
+    #logo{
+      width:40px;
+      height: 40px;
+    }
+
+    ul{
+        gap:5px;
+        justify-content: center;
+        
+    }
+
+    nav li{
+        width: 50px;
+    }
+    
+ } 
+
+ @media (max-width: 1100px){
+    #fingerSpan{
+        left:100px
+    }
+ }
+
+ @media (max-width: 900px){
+    #fingerSpan{
+        top:165px;
+        left:85px
+    }
+ }
+
+ @media (max-width: 700px){
+    #fingerSpan{
+        left:70px
+    }
+ }
+
+ @media (max-width: 600px){
+    #fingerSpan{
+        left:60px
+    }
+ }
+
+ @media (max-width: 400px){
+    #fingerSpan{
+        left:45px
+    }
+ }
+
+ @media (max-width: 300px){
+    #fingerSpan{
+        top:220px;
+        left:35px
+    }
+
+    ul li{
+        margin-left: 10px;
+    }
+  
+ }
+ 
+ 
+ 
+
+
 

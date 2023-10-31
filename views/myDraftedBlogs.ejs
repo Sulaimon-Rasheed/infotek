@@ -46,10 +46,11 @@
         
         <div>
           <main>
+            <hr>
             <form action="/dashboard/filter" method="get" id="searchBlogForm2">
               <label for="filter"
-                >Filter your blogs by state:
-                <select name="filter" id="selectInput">
+                >Filter your blogs by state:</label>
+                <select name="filter" id="selectInput2">
                   <option value="">
                     --Select by what state to filter blogs--
                   </option>
@@ -57,10 +58,11 @@
                   <option value="published" name="filter">published</option>
                   <option value="All" name="filter">All</option>
                 </select>
-              </label>
+              
               <button type="submit" class="searchAndSort">filter</button>
             </form>
-            <ul>
+            <hr>
+            <ul id="blogList">
               <%paginatedBlogs.forEach(blog=>{%>
               <li>
                 <div id="eachBlogContainer">

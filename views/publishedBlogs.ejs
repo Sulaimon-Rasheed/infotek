@@ -47,6 +47,7 @@
               from the Technology ecosystem.
             </p>
           </div>
+          <hr>
           <form
             action="/published_blogs/filter"
             method="get"
@@ -55,7 +56,7 @@
             <label for="filter"
               ><b>Select</b> blogs by <span>author</span> or
               <span>title</span> or <span>tag</span> and <b>search</b> with a
-              name:
+              name:</label>
 
               <select name="filter" id="selectInput">
                 <option value="">--Select here--</option>
@@ -63,19 +64,20 @@
                 <option value="title" name="filter">title</option>
                 <option value="tag" name="filter">tag</option></select
               >:
-            </label>
+            
 
-            <label for="content" id="search">
+            <label for="content" id="search"></label>
               <input
                 type="text"
                 id="searchInput"
                 name="content"
                 placeholder="Enter the name of author or title or tag here"
               />
-            </label>
+           
             <button type="submit" class="searchAndSort">Search</button>
           </form>
-
+          <hr>
+          <hr id="midline">
           <form action="/blogs/sort" method="GET" id="sortBlogForm">
             <label for="sort"
               ><b>Sort</b> the blogs:
@@ -89,9 +91,9 @@
             </label>
             <button type="submit" class="searchAndSort">Sort</button>
           </form>
-
+         <hr>
           <%if(paginatedBlogs){%>
-          <ul>
+          <ul id="blogList">
             
             <%paginatedBlogs.forEach(blog=>{%>
             <li>
