@@ -40,9 +40,14 @@
       </header>
       <div id="hAndMContainer">
         <%if(user){%>
-        <h1 id="dashWelcome">Hi, <span><%= user.email%></span>.</h1>
+        <h1 id="dashWelcome">Hi, <span><%= user.first_name%></span>.</h1>
+        <p> <img
+          src="<%=user.profileImage%>"
+          alt="author's image"
+          id="authorImage"
+        /></p>
         <h2>Here, is/are your <span>drafted</span> blog/blogs.</h2>
-        <p>You can also <span><a href="/create_blog">create</a></span>, <span>update</span> and <span>delete</span> your blogs from here.</p>
+        <p>You can also <span><a href="/create_blog" id="createBtn">create blog</a></span> , <span>update</span> and <span>delete</span> new blogs from here.</p>
         <div>
           <main>
             <hr>
@@ -61,112 +66,97 @@
               <button type="submit" class="searchAndSort">filter</button>
             </form>
             <ul id="blogList">
-              <%paginatedBlogs.forEach(blog=>{%>
-              <li>
-                <div id="eachBlogContainer">
-                  <p><%=blog.tag%></p>
-                  <h2><%=blog.title%></h2>
-                  <div id="blogBody"><%=blog.body%></div>
-                  <form action="/blogs/ownersBlog" method="GET">
-                    <input
-                      type="hidden"
-                      value="<%=blog._id%>"
-                      name="blogId"
-                      style="
-                        width: 0;
-                        height: 0;
-                        background-color: inherit;
-                        border: none;
-                      "
-                    />
-                    <button id="fingerSpan">
-                
-                        <img src="../public/finger2_image.jpg" alt="pointing finger" id="finger">
-                        <figcaption id="readCaption">Read more</figcaption>
-                      
-                    </button>
-                  </form>
-                  <hr>
-                  <p id="blogDescribe">
-                    <b>Description:</b><%=blog.description%>
-                  </p>
-                  <div id="blogNote">
-                    <p><strong>Read count: </strong><%=blog.read_count%></p>
-                    <p>
-                      <strong>Reading time: </strong> <%=blog.reading_time%>
-                    </p>
-                  </div>
-                  <p id="time">
-                    <b>Drafted time:</b> <%=blog.drafted_timestamp%>
-                  </p>
-                  <div id="blogAuthor">
-                    <img
-                      src="../public/person_image.jpg"
-                      alt="author's image"
-                      id="authorImage"
-                    />
-                    <p><%=blog.author%></p>
-                  </div>
-
-                  <div id="action">
-                    <%if(blog.state === "draft"){%>
-                    <p
-                      style="background-color: brown; color: white"
-                      class="blogState"
-                    >
-                      <%=blog.state%>
-                    </p>
-                    <%}else{%>
-                    <p
-                      style="background-color: green; color: white"
-                      class="blogState"
-                    >
-                      <%=blog.state%>
-                    </p>
-                    <%}%>
-
+              <% for (let i = 0; i < paginatedBlogs.length; i++) { %>
+              
+                <li>
+                  <div id="eachBlogContainer">
                     
+                        <div  id="timeAndTitle">
+                          
+                          <%if(passdays[i] >=0 && passdays[i]< 0.5){%>
+                            <p id="time"><b>Drafted:</b><%=paginatedBlogs[i].drafted_timestamp%> <span>(today)</span></p> 
+                          <%}else if(passdays[i] >=0.5 && passdays[i] < 1.5) {%>
+                            <p id="time"><b>Drafted:</b><%=paginatedBlogs[i].drafted_timestamp%> <span>(yesterday)</span></p> 
+                         <% }else if(passdays[i] > 30) {%>
+                          <p id="time"><b>Drafted:</b><%=paginatedBlogs[i].drafted_timestamp%> <span>(<%= Math.floor((passdays[i])/30)%> month(s) ago)</span></p>
+                         <%}else if(passdays[i] > 365) {%>
+                          <p id="time"><b>Drafted:</b><%=paginatedBlogs[i].drafted_timestamp%> <span>(<%= Math.floor((passdays[i])/365)%> year(s) ago)</span></p>
+                         <%}else{%>
+                          <p id="time"><b>Drafted:</b><%=paginatedBlogs[i].drafted_timestamp%> <span>(<%= Math.round(passdays[i])%> days ago)</span></p> 
+                         <% }%>
+                          <a href="/blogs/ownersBlog/<%=paginatedBlogs[i]._id%>" id="otherInfo">
+                            
+                            <p><span id="tag"><b><%=paginatedBlogs[i].tag%></b></span></p> 
+                            <p><b>Title: </b><span id="title"><%=paginatedBlogs[i].title%></span></p>
+                            <p id="describe"><%=paginatedBlogs[i].description%></p>
+                            <p id="readingTime"><b>Reading time:</b> <%=paginatedBlogs[i].reading_time%></p>
+                            <div id="blogAuthor">
+                              <img
+                                src="<%=user.profileImage%>"
+                                alt="author's image"
+                                id="authorImage"
+                              />
+                              <p><%=paginatedBlogs[i].author%></p>
+                            </div>
+                            <%if(paginatedBlogs[i].state === "draft"){%>
+                              <p
+                                style="background-color: brown; color: white"
+                                class="articleState"
+                              >
+                                <%=paginatedBlogs[i].state%>
+                              </p>
+                              <%}else{%>
+                              <p
+                                style="background-color: green; color: white"
+                                class="articleState"
+                              >
+                                <%=paginatedBlogs[i].state%>
+                              </p>
+                              <%}%>
+                            <p id="readMore">Read blog &xrArr;</p>
+                          
+                          </a>
+                        </div>
                   </div>
-                </div>
-                <div id="updateAndDelete">
-                  <form
-                    action="/blogs/updateState/<%=blog._id%>"
-                    method="PUT"
-                  >
-                    <input
-                      id="stateInput"
-                      type="text"
-                      name="state"
-                      value="published"
-                    />
-
-                    <input
-                      type="date"
-                      value="0"
-                      name="published_timestamp"
-                      style="
-                        width: 0;
-                        height: 0;
-                        background-color: inherit;
-                        border: none;
-                      "
-                    />
-                    <%if(blog.state==="draft"){%>
-                    <button
-                      id="state"
-                      type="submit"
-                      formmethod="post"
-                      title="click to publish the blog"
+                  <div id="updateAndDelete">
+                    <form
+                      action="/blogs/updateState/<%=paginatedBlogs[i]._id%>"
+                      method="PUT"
                     >
-                      publish
-                    </button>
-                    <%}else{%>
-                    <span></span>
-                    <%}%>
-                  </form>
-                </div>
-              </li>
-              <%})%>
+                      <input
+                        id="stateInput"
+                        type="text"
+                        name="state"
+                        value="published"
+                      />
+  
+                      <input
+                        type="date"
+                        value="0"
+                        name="published_timestamp"
+                        style="
+                          width: 0;
+                          height: 0;
+                          background-color: inherit;
+                          border: none;
+                        "
+                      />
+                      <%if(paginatedBlogs[i].state==="draft"){%>
+                      <button
+                        id="state"
+                        type="submit"
+                        formmethod="post"
+                        title="click to publish the blog"
+                      >
+                        publish
+                      </button>
+                      <%}else{%>
+                      <span></span>
+                      <%}%>
+                    </form>
+                  </div>
+                </li>
+                <%}%>
             </ul>
           </main>
         </div>
@@ -208,7 +198,7 @@
       <footer>
         <p>
           Send us a mail &rBarr;
-          <a href="mailto:maito4me@gmail.com"
+          <a href="mailto:infotek4you@gmail.com"
             ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
           /></a>
         </p>

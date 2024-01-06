@@ -43,7 +43,7 @@
         <main>
           <h1 class="topic"><span>Sign Up</span></h1>
           <div id="authContainer">
-          <form action="/users/signup" , method="post">
+          <form action="/users/signup" , method="post" enctype="multipart/form-data">
     
             <label for="first_name" class="label">first name:</label>
             <input
@@ -66,12 +66,22 @@
               name="email"
               class="input"
             /><br /><br /><br />
+            
             <label for="password" class="label">password:</label>
             <input
               type="password"
               ,
               name="password"
               class="input"
+            /><br /><br /><br />
+            <label for="profileImage" class="label">your image upload:</label>
+            <input
+              type="file"
+              name="profileImage"
+              accept="image/*"
+              placeholder="Choose a file"
+              class="input"
+              required
             />
           </div>
             <button type="submit" class="submit">submit</button>
@@ -82,7 +92,7 @@
       <footer>
         <p>
           Send us a mail &rBarr;
-          <a href="mailto:maito4me@gmail.com"
+          <a href="mailto:infotek4you@gmail.com"
             ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
           /></a>
         </p>

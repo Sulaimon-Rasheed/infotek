@@ -21,6 +21,7 @@
       href="../public/favicon-16x16.png"
     />
     <link rel="manifest" href="../public/site.webmanifest" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="../public/style.css" />
     <title><%=siteBrand%> | Create blog</title>
   </head>
@@ -39,34 +40,53 @@
         <span id="date"><%=date%></span>
       </header>
       <div id="hAndMContainer">
-        <%if(user){%>
-    <div id="welcomeContainer">
-        <h1 id="dashWelcome">Welcome <span><%= user.email%></span> to the blog creation point.</h1>
-        <p><b>Trust:</b>Your article will be informative and impactful.</p>
-    </div>
+
+        <div id="welcomeContainer">
+          <h1 id="dashWelcome">
+            <%if(message == "Blog created successfully"){%>
+              <img src="../public/362-3624869_icon-success-circle-green-tick-png.png" alt="success-mark logo" id="successMark">
+              <h1 style="color: green"><%=message%></h1>
+            <%}else{%>
+          Welcome <span><%=user.first_name%></span> to the blog creation
+            point.
+          </h1>
+          <p><b>Trust:</b>Your article will be informative and impactful.</p>
+        </div>
+        
+          
+         
         <form action="/blogs/create" method="POST">
-            <label for="tag" class="createLabel">Tag: <input type="text" name="tag" id="searchInput" /></label
-                ><br /><br />
-          <label for="title" class="createLabel">Title: <input type="text" name="title" id="searchInput"/></label
+          <label for="tag" class="createLabel"
+            >Tag: <input type="text" name="tag" id="searchInput" /></label
+          ><br /><br />
+          <label for="title" class="createLabel"
+            >Title: <input type="text" name="title" id="searchInput" /></label
           ><br /><br />
           <label for="description" class="createLabel"
-            >Description: <input type="text" name="description" id="searchInput"/></label
+            >Description:
+            <input type="text" name="description" id="searchInput" /></label
           ><br /><br />
-          <label for="author" class="createLabel">Author: <input type="text" name="author" id="searchInput"/></label
+          <label for="author" class="createLabel"
+            >Author: <input type="text" name="author" id="searchInput" /></label
           ><br /><br />
           <label for="body" class="createLabel">Body: </label><br />
-          <textarea name="body" id="blogBodyArea" cols="100" rows="10"></textarea
-          ><br /><br />
+          <textarea name="content" id="editor"></textarea><br /><br />
+          <script>
+            ClassicEditor.create(document.querySelector("#editor")).catch(
+              (err) => {
+                res.render("serverError", { message: err.message });
+              }
+            );
+          </script>
           <button type="submit" id="anchor">Submit</button>
         </form>
-        <%}else{%>
-        <p>Please<a href="/login" id="anchor">login</a></p>
-        <%}%>
+        <% }%>
       </div>
+  
       <footer>
         <p>
           Send us a mail &rBarr;
-          <a href="mailto:maito4me@gmail.com"
+          <a href="mailto:infotek4you@gmail.com"
             ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
           /></a>
         </p>

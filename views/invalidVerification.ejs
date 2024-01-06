@@ -22,7 +22,7 @@
     />
     <link rel="manifest" href="../public/site.webmanifest" />
     <link rel="stylesheet" href="../public/style.css" />
-    <title><%=siteBrand%> | Login</title>
+    <title><%=siteBrand%> | Error</title>
   </head>
   <body>
     <div id="rootContainer">
@@ -39,33 +39,22 @@
       </header>
 
       <div id="hAndMContainer">
-        <main id="loginMain">
-          <h1 class="topic"><span>Login</span></h1>
-          <form action="users/login" , method="post">
-            <div id="authContainer">
-              <label for="email" class="label"
-                >email:
-                <input type="text" , name="email" class="input" /> </label
-              ><br /><br /><br />
-              <label for="password" class="label"
-                >password:
-                <input type="password" , name="password" class="input" />
-              </label>
-            </div>
-            <button type="submit" class="submit">Enter</button>
-          </form>
-          <a id="forgotPass" href="/forgotPassword">Forgot password ?</a>
+        <main>
+          <img src="../public/opps2_image.jpg" alt="error image" id="opps" />
+
+          <h2><%= message1 %></h2>
+          <p><%= message2 %></p>
         </main>
       </div>
-      <footer>
-        <p>
-          Send us a mail &rBarr;
-          <a href="mailto:infotek4you@gmail.com"
-            ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
-          /></a>
-        </p>
-        <%-include("partials/footer.ejs")-%>
-      </footer>
     </div>
+    <footer>
+      <p>
+        Send us a mail &rBarr;
+        <a href="mailto:infotek4you@gmail.com"
+          ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
+        /></a>
+      </p>
+      <%-include("partials/footer.ejs")-%>
+    </footer>
   </body>
 </html>

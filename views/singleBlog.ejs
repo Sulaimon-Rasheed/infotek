@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/style.css">
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -21,7 +22,6 @@
       href="../public/favicon-16x16.png"
     />
     <link rel="manifest" href="../public/site.webmanifest" />
-    <link rel="stylesheet" href="../public/style.css" />
     <title><%=siteBrand%> | Full blog</title>
   </head>
   <body>
@@ -46,7 +46,6 @@
               id="anchor"
               id="blogBody"
               formmethod="post"
-              title="click to read more"
             >
               Back to All blogs
             </button>
@@ -57,45 +56,45 @@
         <main>
           <h1><span><%=blog.title%></span></h1>
           <div id="eachBlogContainer">
-            <textarea id="singleBlogBody" cols="100" rows="15"><%=blog.body%></textarea>
-          <p class="singleBlogTime"><b>Published time:  </b><%=blog.published_timestamp%></p>
+            <div><%- blog.body%></div>
+          <p class="singleBlogTime"><b>Published:</b> <%=blog.published_timestamp%></p>
           <div id="blogAuthor">
             <img
-              src="../public/person_image.jpg"
+              src="<%=blog.user_id[0].profileImage.secure_url%>"
               alt="author's image"
               id="authorImage"
             />
             <p><span><%=blog.author%></span></p>
           </div>
         </div>
-          <form action="/blogs/readCount/<%=blog._id%>" method="PUT">
-            <input
-              type="number"
-              value="<%= blog.read_count + 1 %>"
-              name="readCount"
-              style="
-                width: 0;
-                height: 0;
-                border: none;
-                background-color: inherit;
-              "
-            />
-            <button
-              type="submit"
-              id="anchor"
-              id="blogBody"
-              formmethod="post"
-              title="click to read more"
-            >
+        <form action="/blogs/readCount/<%=blog._id%>" method="PUT">
+          <input
+            type="number"
+            value="<%= blog.read_count + 1 %>"
+            name="readCount"
+            style="
+              width: 0;
+              height: 0;
+              border: none;
+              background-color: inherit;
+            "
+          />
+          <button
+            type="submit"
+            id="anchor"
+            id="blogBody"
+            formmethod="post"
+          >
             Back to All blogs
-            </button>
-          </form>
+          </button>
+        </form>
+          
         </main>
       </div>
       <footer>
         <p>
           Send us a mail &rBarr;
-          <a href="mailto:maito4me@gmail.com"
+          <a href="mailto:infotek4you@gmail.com"
             ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
           /></a>
         </p>

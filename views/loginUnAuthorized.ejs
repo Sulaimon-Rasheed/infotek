@@ -22,28 +22,29 @@
     />
     <link rel="manifest" href="../public/site.webmanifest" />
     <link rel="stylesheet" href="../public/style.css" />
-    <title><%=siteBrand%> | Error</title>
+    <title><%=siteBrand%> | Login denied</title>
   </head>
-  
-<body>
-  <div id="rootContainer">
+  <body>
+    <div id="rootContainer">
     <header>
       <div id="logoAndNav">
         <a href="/"
           ><img
             id="logo"
             src="../public/android-chrome-192x192.png"
-            alt="infotek logo"
+            alt="liberator logo"
         /></a>
         <%-include("partials/header.ejs")-%>
       </div>
-
     </header>
-    
+   
       <div id="hAndMContainer">
         <main>
           <img src="../public/opps2_image.jpg" alt="error image" id="opps" />
-          <h1>ROUT NOT FOUND</h1>
+          <h1><%=message%></h1>
+          <p>We have sent you an email to get authorized.</p>
+          <p><span>Go to your email.</span></p>
+
         </main>
       </div>
     </div>

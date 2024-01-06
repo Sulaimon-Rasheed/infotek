@@ -22,28 +22,38 @@
     />
     <link rel="manifest" href="../public/site.webmanifest" />
     <link rel="stylesheet" href="../public/style.css" />
-    <title><%=siteBrand%> | Error</title>
+    <title><%=siteBrand%> | password reset </title>
   </head>
-  
-<body>
-  <div id="rootContainer">
+  <body>
+    <div id="rootContainer">
     <header>
       <div id="logoAndNav">
         <a href="/"
           ><img
             id="logo"
             src="../public/android-chrome-192x192.png"
-            alt="infotek logo"
+            alt="liberator logo"
         /></a>
-        <%-include("partials/header.ejs")-%>
+        <nav>
+          <ul id="navItems">
+            <span>Request successful</span>
+          </ul>
+      </nav>
       </div>
-
+    
     </header>
     
       <div id="hAndMContainer">
         <main>
-          <img src="../public/opps2_image.jpg" alt="error image" id="opps" />
-          <h1>ROUT NOT FOUND</h1>
+          <img src="../public/362-3624869_icon-success-circle-green-tick-png.png" alt="success-mark logo" id="successMark">
+          <h1 id="message1"><%= message1 %></h1>
+          <p><%= message2%></p>
+          <p><span><%= message3 %></span></p>
+          <%if(message3 == "Go back to the login page"){%>
+            <a href="/Login" class="submit" id="authLogin">Login</a>
+          <%}else{%>
+            <span></span>
+          <%}%>
         </main>
       </div>
     </div>

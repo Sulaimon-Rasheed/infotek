@@ -21,6 +21,7 @@
       href="../public/favicon-16x16.png"
     />
     <link rel="manifest" href="../public/site.webmanifest" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="../public/style.css" />
     <title><%=siteBrand%> | Blog management board</title>
   </head>
@@ -39,13 +40,14 @@
       </header>
       <div id="hAndMContainer">
         <main>
+          <%if(blog && updateMessage != "Blog updated successfully"){%>
           <h1><span><%=blog.title%></span></h1>
           <div id="eachBlogContainer">
-            <textarea id="ownersBlogBody" cols="100" rows="15"><%=blog.body%></textarea>
+            <div><%-blog.body%></div>
           
           <div id="blogAuthor">
             <img
-              src="../public/person_image.jpg"
+              src="<%=user.profileImage%>"
               alt="author's image"
               id="authorImage"
             />
@@ -55,7 +57,13 @@
           <form action="/blogs/updateBody/<%=blog._id%>" method="PUT" id="updateForm">
             <label for="body"
               ><h2>Make update to your blog body(Draft or Published) here:</h2>
-              <textarea name="body" id="blogBodyArea" cols="100" rows="15"></textarea>
+              <textarea name="content" id="editor"></textarea>
+              <script>
+                ClassicEditor.create(document.querySelector("#editor"))
+                .catch((err)=>{
+                  res.render("serverError",{message:err.message})
+                })
+              </script>
             </label>
             <input
               type="number"
@@ -89,12 +97,21 @@
               <figcaption>Delete</figcaption>
             </button>
           </form>
+          <%}else if(blog && updateMessage == "Blog updated successfully" ){%>
+            <img src="../public/362-3624869_icon-success-circle-green-tick-png.png" alt="success-mark logo" id="successMark">
+            <h1 style="color:green"><%=updateMessage%></h1>
+            <p><a href="/dashboard" class="submit"  id="authLogin">Dashboard</a></p>
+        <%}else if(!blog){%>
+          <img src="../public/362-3624869_icon-success-circle-green-tick-png.png" alt="success-mark logo" id="successMark">
+          <h1 style="color:green"><%=delMessage%></h1>
+          <p><a href="/dashboard" class="submit"  id="authLogin">Dashboard</a></p>
+        <%}%>
         </main>
       </div>
       <footer>
         <p>
           Send us a mail &rBarr;
-          <a href="mailto:maito4me@gmail.com"
+          <a href="mailto:infotek4you@gmail.com"
             ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
           /></a>
         </p>

@@ -10,7 +10,7 @@ const validateUser = async (req, res, next)=>{
             "string.required": `"Password" is required `,"string.min":`"Password" should have a minimum length of {8}`}),
         })
 
-        await userSchema.validateAsync(req.body, {abortEarly:true})
+        userSchema.validate(req.body)
         next()
     }
     catch(error){

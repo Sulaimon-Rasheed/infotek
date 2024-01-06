@@ -12,8 +12,8 @@ const blogSchema = new Schema({
   reading_time:{type: String},
   tag:{type: String},
   body:{type: String, requred:true},
-  drafted_timestamp:{type: Date},
-  published_timestamp:{type: Date},
+  drafted_timestamp:{type: String},
+  published_timestamp:{type: String},
   user_id:[{type:Schema.Types.ObjectId, ref:"users"}]
 });
 

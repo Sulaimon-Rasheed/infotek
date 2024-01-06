@@ -81,55 +81,46 @@
           </form>
           <hr>
           <ul id="blogList">
-            <%blogs.forEach(blog=>{%>
+            
+            <% for (let i = 0; i < paginatedBlogs.length; i++) { %>
             <li>
               <div id="eachBlogContainer">
-              <p><%=blog.tag%></p>
-              <h2><%=blog.title%></h2>
-
-              <div id="blogBody"><%=blog.body%></div>
-                <form action="/blogs/readBlog" method="GET">
-                  <input
-                    type="hidden"
-                    value="<%=blog._id%>"
-                    name="blogId"
-                    style="
-                      width: 0;
-                      height: 0;
-                      background-color: inherit;
-                      border: none;
-                    "
-                  />
-                  <button id="fingerSpan">
-              
-                      <img src="../public/finger2_image.jpg" alt="pointing finger" id="finger">
-                      <figcaption id="readCaption">Read more</figcaption>
-                    
-                  </button>
-                </form>
-              <p id="blogDescribe"><b>Description:</b><%=blog.description%></p>
-             
-              <div id="blogNote">
-                <p><strong>Read count: </strong><%=blog.read_count%></p>
-                <p><strong>Reading time: </strong> <%=blog.reading_time%></p>
+                <div  id="timeAndTitle">
+                  <%if(passdays[i] >=0 && passdays[i]< 0.5){%>
+                    <p id="time"><b>Publshed:</b><%=paginatedBlogs[i].published_timestamp%> <span>(today)</span></p> 
+                  <%}else if(passdays[i] >=0.5 && passdays[i] < 1.5) {%>
+                    <p id="time"><b>Publshed:</b><%=paginatedBlogs[i].published_timestamp%> <span>(yesterday)</span></p> 
+                 <% }else if(passdays[i] > 30) {%>
+                  <p id="time"><b>Publshed:</b><%=paginatedBlogs[i].published_timestamp%><span>(<%= Math.floor((passdays[i])/30)%> month(s) ago)</span></p>
+                 <%}else if(passdays[i] > 365) {%>
+                  <p id="time"><b>Publshed:</b><%=paginatedBlogs[i].published_timestamp%> <span>(<%= Math.floor((passdays[i])/365)%> year(s) ago)</span></p>
+                 <%}else{%>
+                  <p id="time"><b>Publshed:</b><%=paginatedBlogs[i].published_timestamp%> <span>(<%= Math.round(passdays[i])%> days ago)</span></p> 
+                 <% }%>
+                  
+                  <a href="/blogs/readBlog/<%=paginatedBlogs[i]._id%>" id="otherInfo" title="click to read the blog">
+            
+                    <p><span id="tag"><b><%=paginatedBlogs[i].tag%></b></span></p> 
+                    <p><b>Title: </b><span id="title"><%=paginatedBlogs[i].title%></span></p>
+                    <p id="describe"><b>Description:</b> <%=paginatedBlogs[i].description%></p>
+                    <p id="readingTime"><b>Reading time:</b> <%=paginatedBlogs[i].reading_time%></p>
+                    <p id="readCount"><b>Read count:</b> <%=paginatedBlogs[i].read_count%></p>
+                    <div id="blogAuthor">
+                      <img
+                        src="<%=paginatedBlogs[i].user_id[0].profileImage.secure_url%>"
+                        alt="author's image"
+                        id="authorImage"
+                      />
+                      <p><%=paginatedBlogs[i].author%></p>
+                    </div>
+                    <p id="readMore">Read blog &xrArr;</p>
+                  
+                  </a>
+                </div>
               </div>
-              <p id="time">
-                <b>Published time:</b> <%=blog.published_timestamp%>
-              </p>
-              <div id="blogAuthor">
-                <img src="../public/person_image.jpg" alt="author's image" id="authorImage">
-                <p>
-                  <%=blog.author%>
-                </p>
-              
-              </div>
-
-            </div>
             </li>
 
-          
-
-            <%})%>
+            <%}%>
           </ul>
 
           <ul class="page">
@@ -165,7 +156,7 @@
       <footer>
         <p>
           Send us a mail &rBarr;
-          <a href="mailto:maito4me@gmail.com"
+          <a href="mailto:infotek4you@gmail.com"
             ><img id="gmail" src="../public/gmail_image.jfif" alt="gmail image"
           /></a>
         </p>
