@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "engines" : {
-    "node" : ">=14.20.1 <17.0.0"
-  },
   "scripts": {
     "test": "jest",
     "start": "nodemon server.js"
@@ -30,15 +27,11 @@
     "joi": "^17.11.0",
     "jsonwebtoken": "^9.0.2",
     "luxon": "^3.4.4",
-    "moment": "^2.29.4",
-    "mongodb-memory-server": "^9.0.1",
     "mongoose": "^7.6.2",
-    "mongoose-paginate-v2": "^1.7.4",
     "multer": "^1.4.5-lts.1",
     "node-cache": "^5.1.2",
     "nodemailer": "^6.9.7",
     "nodemon": "^3.0.1",
-    "redis": "^4.6.11",
     "supertest": "^6.3.3",
     "uuid": "^9.0.1",
     "winston": "^3.11.0"

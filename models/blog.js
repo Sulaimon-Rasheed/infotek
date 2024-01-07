@@ -1,6 +1,4 @@
-const { date } = require("joi");
 const mongoose = require("mongoose");
-// const mongoosePaginate = require('mongoose-paginate-v2');
 
 const Schema = mongoose.Schema;
 const blogSchema = new Schema({
