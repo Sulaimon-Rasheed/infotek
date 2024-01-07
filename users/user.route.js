@@ -66,7 +66,7 @@ userRouter.post(
 );
 // sendVerificationEmail function
 const sendVerificationEmail = ({ _id, email, first_name, last_name }, res) => {
-  const currUrl = "http://localhost:6500";
+  const currUrl = "http://infotek.onrender.com";
 
   const uniqueString = uuidv4() + _id;
 

@@ -71,7 +71,7 @@ const resetPassword = async (req, res)=>{
 
   const resetToken = user.createPasswordResetToken()
   
-  const currUrl = "http://localhost:6500"
+  const currUrl = "https://infotek.onrender.com"
   const option = {
     email:user.email,
     subject:"We received your request for password reset",
